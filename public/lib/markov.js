@@ -37,7 +37,7 @@ const client = new tmi.Client({
         secure: true,
         reconnect: true
     },
-    channels: [window.location.hash.slice(1)]
+    channels: window.location.hash.slice(1).split(",")
 })
 
 client.connect()
@@ -46,7 +46,7 @@ client.connect()
 client.on("message", (channel, tags, message, self) => {
     let word = bk.update(message)
 
-    const len = ~~(Math.random() * message.length)
+    const len = message.length //~~(Math.random() * message.length)
     let resp = word
     for (let i = 0; i < len; i++) {
         word = bk.gen(word)
@@ -56,5 +56,26 @@ client.on("message", (channel, tags, message, self) => {
 
     // var utterThis = new SpeechSynthesisUtterance(resp)
     // synth.speak(utterThis)
-    console.log(`${tags["display-name"]}: ${message} => ${resp}`)
+    const container = document.createElement("div")
+    const chnl = document.createElement("span")
+    const user = document.createElement("span")
+    const msg = document.createElement("span")
+
+    container.style.margin = "8px"
+
+    chnl.style.opacity = "0.4"
+
+    user.style.backgroundColor = "#000"
+    user.style.color = "#fff"
+
+    chnl.innerText = `${channel} `
+    user.innerText = tags["display-name"]
+    msg.innerText = `: ${resp}`
+    msg.title = message
+
+    container.append(chnl)
+    container.append(user)
+    container.append(msg)
+
+    document.body.prepend(container)
 })
