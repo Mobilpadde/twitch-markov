@@ -1,0 +1,16 @@
+{
+    "name": "markov-twicth",
+    "version": "0.0.1",
+    "scripts": {
+        "deploy": "gh-pages ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Mobilpadde/twitch-markov"
+    },
+    "author": "Mads Cordes",
+    "license": "MIT",
+    "devDependencies": {
+        "gh-pages": "^3.1.0"
+    }
+}
