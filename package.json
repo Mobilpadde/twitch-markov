@@ -2,7 +2,7 @@
     "name": "markov-twicth",
     "version": "0.0.1",
     "scripts": {
-        "deploy": "gh-pages public"
+        "deploy": "gh-pages -d public"
     },
     "repository": {
         "type": "git",
